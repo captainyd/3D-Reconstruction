@@ -86,19 +86,13 @@
 
 ### 3.4 示范样例
 
-<img src="./images/sample6.jpg" width = 45% height = 45%/>
-
-<img src="./images/sample2.jpg" width = 45% height = 45%/>
-
-<img src="./images/sample3.jpg" width = 45% height = 45%/>
-
-<img src="./images/sample4.jpg" width = 45% height = 45%/>
-
-<img src="./images/sample5.jpg" width = 45% height = 45%/>
-
-<img src="./images/sample7.jpg" width = 45% height = 45%/>
-
-<img src="./images/sample8.jpg" width = 45% height = 45%/>
+![sample](images/sample6.jpg)
+![sample](images/sample2.jpg)
+![sample](images/sample3.jpg)
+![sample](images/sample4.jpg)
+![sample](images/sample5.jpg)
+![sample](images/sample7.jpg)
+![sample](images/sample8.jpg)
 
 ## 4. 软件详解
 
@@ -250,10 +244,10 @@ Ultra-high sensitivity is rarely used. It can be used in studio facial or body s
 
 #### Merge Components
 
-1. Read some not very helpfull official tutorials:
+1. Some not very helpfull official tutorials:
    1. [Working with Components: Merging components](https://support.capturingreality.com/hc/en-us/articles/115001569011-Working-with-Components-Merging-components)
    2. [How to put together more components?](https://support.capturingreality.com/hc/en-us/articles/115001485012-How-to-put-together-more-components-)
-2. If you have watched the videos I attatched above, you should know the basic steps to merge components.
+2. If you have watched the videos I attatched above ([软件界面介绍及基础操作流程](#软件界面介绍及基础操作流程)), you should know the basic steps to merge components.
 
 #### Useful Tips
 
