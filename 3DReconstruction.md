@@ -12,7 +12,7 @@
   - [2. 操作流程](#2-%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B)
   - [3. 获取重建数据](#3-%E8%8E%B7%E5%8F%96%E9%87%8D%E5%BB%BA%E6%95%B0%E6%8D%AE)
     - [3.1 数据类型](#31-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B)
-    - [3.2 如何正确拍摄用于重建的数据以达到最好的效果？](#32-%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E6%8B%8D%E6%91%84%E7%94%A8%E4%BA%8E%E9%87%8D%E5%BB%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A5%E8%BE%BE%E5%88%B0%E6%9C%80%E5%A5%BD%E7%9A%84%E6%95%88%E6%9E%9C)
+    - [3.2 如何正确拍摄用于重建的数据](#32-%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E6%8B%8D%E6%91%84%E7%94%A8%E4%BA%8E%E9%87%8D%E5%BB%BA%E7%9A%84%E6%95%B0%E6%8D%AE)
     - [3.3 参考文档](#33-%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3)
     - [3.4 示范样例](#34-%E7%A4%BA%E8%8C%83%E6%A0%B7%E4%BE%8B)
   - [4. 软件详解](#4-%E8%BD%AF%E4%BB%B6%E8%AF%A6%E8%A7%A3)
@@ -22,6 +22,10 @@
       - [软件界面介绍及基础操作流程](#%E8%BD%AF%E4%BB%B6%E7%95%8C%E9%9D%A2%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B)
       - [操作流程详解](#%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%AF%A6%E8%A7%A3)
       - [Parameter Settings](#Parameter-Settings)
+        - [Application settings](#Application-settings)
+        - [Alignment Settings](#Alignment-Settings)
+        - [Reconstruction Settings](#Reconstruction-Settings)
+        - [Export Settings](#Export-Settings)
       - [Merge Components](#Merge-Components)
       - [Useful Tips](#Useful-Tips)
   - [5. Support](#5-Support)
@@ -45,10 +49,10 @@
 1. 获取数据：用Faro，无人机，单反等工具获取数据。详见[获取重建数据](#3-获取重建数据)。
 2. 数据处理：用ffmpeg对视频类型的数据进行抽帧处理。详见[ffmpeg：常用命令](#41-ffmpeg)。
 3. 数据重建：
-   
-	a) 对扫描数据，使用Autodesk Recap进行点云之间的align，并导出e57格式的结构化点云数据。详见[Autodesk Recap](#42-autodesk-recap)。
+  
+    a) 对扫描数据，使用Autodesk Recap进行点云之间的align，并导出e57格式的结构化点云数据。详见[Autodesk Recap](#42-autodesk-recap)。
 
-	b) 在Reality Capture中先导入扫描数据，再导入图片数据。并在该软件中完成重建与贴图相关操作。详见[Reality Capture](#43-reality-capture)。
+    b) 在Reality Capture中先导入扫描数据，再导入图片数据。并在该软件中完成重建与贴图相关操作。详见[Reality Capture](#43-reality-capture)。
 4. 最后导出模型，并根据重建效果以及需求，可以对导出的模型进行调整修改，并导入回Reality Capture重新贴图。
 
 ![pipeline](images/pipeline.jpg)
@@ -61,7 +65,7 @@
 2. **视频数据**：用无人机或者Gopro等设备拍摄的视频。
 3. **扫描数据**：用Faro等扫描仪获取的点云数据。
 
-### 3.2 如何正确拍摄用于重建的数据以达到最好的效果？
+### 3.2 如何正确拍摄用于重建的数据
 
 （基于Reality Capture：[官方说明](https://support.capturingreality.com/hc/en-us/articles/115001528211-Taking-pictures-for-photogrammetry)）
 
@@ -75,9 +79,10 @@
 * 图像拍摄角度尽可能多
 
 ### 3.3 参考文档
-  * Reality Capture软件的帮助文档（软件内窗口右上角下拉的**help**）中 *How to Take Photographs* (**重要**：**相机到目标应该保持的距离-计算工具**)
-  * [Full Photogrammetry Guide for 3D Artists](https://80.lv/articles/full-photogrammetry-guide-for-3d-artists/)
-  * [Huge scene reconstruction](https://support.capturingreality.com/hc/en-us/articles/360016441831-Huge-scene-reconstruction)
+
+* Reality Capture软件的帮助文档（软件内窗口右上角下拉的**help**）中 *How to Take Photographs* (**重要**：**相机到目标应该保持的距离-计算工具**)
+* [Full Photogrammetry Guide for 3D Artists](https://80.lv/articles/full-photogrammetry-guide-for-3d-artists/)
+* [Huge scene reconstruction](https://support.capturingreality.com/hc/en-us/articles/360016441831-Huge-scene-reconstruction)
 
 ### 3.4 示范样例
 
@@ -125,19 +130,19 @@ Simply follow the software's instructions.
 
    * `new Project` -> `import point cloud` ->
    * Enter a project name and select a place to save files -> `proceed` ->
-   * Drag Faro (`.fls`) files into `drag files or folders here` (note: `fls` files can only be imported in this way)-> `import files`
-     
+   * Drag Faro (`.fls`) files into `drag files or folders here`
+
    (The import process will take a very long time. )
 
 2. Register Scans:
 
    * Click `auto register scans`. If the scans have good overlap, then the software can auto register the scans, otherwise you will manually register them.
-   * You can find the registration report at the bottom of the screen. Make sure that all scans have good registration -- _Green font_ 
+   * You can find the registration report at the bottom of the screen. Make sure that all scans have good registration -- _Green font_
    * Click `index scans` -> `launch project`
 
 3. Export point cloud:
 
-   * note: No editing to the point cloud, such as point cloud cleaning, resizing etc. If the point cloud has been modified, then we can only export unstructured point cloud, which might cause problems when re-importing it into Reality Capture. 
+   * note: No editing to the point cloud, such as point cloud cleaning, resizing etc. If the point cloud has been modified, then we can only export unstructured point cloud, which might cause problems when re-importing it into Reality Capture.
    * See [Structured and Unstructured File Formats](https://help.autodesk.com/view/RECAP/2018/ENU/?guid=GUID-C4E7FC11-9B31-4FFF-8C54-89EBCEE3C6B6)
    * `Export`: select `e57`
 
@@ -187,12 +192,19 @@ If you have scan data, then start from step 1, otherwise skip to step 5:
 
 If you don't know how to configure the setting, just go with the default, which is usually already the best configuration.
 
-1. Alignment Settings:
+##### Application settings
+
+![application settings](images/application.jpg)
+
+`Cache location`: Custom
+
+It is an important point to not use the same folder as the system and much better to have it on another SSD or HDD.
+
+##### Alignment Settings
 
 ![alignment](images/align.jpg)
 
 `Image overlap`:
-
 
 It defines how good the scanned object is covered by the taken images. By default, this is set to Medium.
 
@@ -213,7 +225,7 @@ Medium overlap can be set if all the images in the dataset have at least 70-80% 
 
 * If there are multiple components or no proper alignment, try increasing this number.
 
-`Detector sensitivity`: 
+`Detector sensitivity`:
 
 It defines how fine and how many features (unique spots of the object) RC will try to detect. Example: for rich granite texture, you can use Low sensitivity. For subtle white marble texture, you will have to use High sensitivity.
 
@@ -221,24 +233,24 @@ It defines how fine and how many features (unique spots of the object) RC will t
 
 Ultra-high sensitivity is rarely used. It can be used in studio facial or body scans. It is better not to set a higher sensitivity than the required or you can have too many false positive errors.
 
-2. Reconstruction Settings:
+##### Reconstruction Settings
 
 ![recon](images/recon.jpg)
 
-`Image downscale`: larger number will increase the 
+`Image downscale`: Larger number will increase the processing time.
 
-3. Export Settings:
-   
+##### Export Settings
+
 ![export](images/export.jpg)
 
-`Export to a single texture file`: 
+`Export to a single texture file`:
 
 * _True_ export a single textrue file, and you can define the texture resolution (`Texture maximal side`) in the upcoming parameter.
 * _False_ export multiple texture file.
 
 #### Merge Components
 
-1. Read some not very helpfull official tutorials: 
+1. Read some not very helpfull official tutorials:
    1. [Working with Components: Merging components](https://support.capturingreality.com/hc/en-us/articles/115001569011-Working-with-Components-Merging-components)
    2. [How to put together more components?](https://support.capturingreality.com/hc/en-us/articles/115001485012-How-to-put-together-more-components-)
 2. If you have watched the videos I attatched above, you should know the basic steps to merge components.
@@ -265,5 +277,5 @@ Ultra-high sensitivity is rarely used. It can be used in studio facial or body s
 
 1. [论坛](https://support.capturingreality.com/hc/en-us)
    > 活跃度低，适合先用来搜索是否有人提过类似的问题。如果问题不紧急可以考虑在此提问，一般需要等待数天。
-2. Facebook Group []()
+2. [Facebook Group](https://www.facebook.com/groups/CapturingRealityArena/) **五星好评**
    > 活跃度很高，基本上当天能得到答复。如果在论坛上找不到解决方案，可以考虑在group里提问。
